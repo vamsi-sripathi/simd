@@ -52,10 +52,14 @@ int main (int argc, char **argv)
   data_order_t order;
 
   if (argc < 4) {
-    printf ("usage : %s size_of_vector [0|1|int] block_size \n", argv[0]); 
-    printf ("0 -> vector is initialized in ascending order of elements\n"
-            "1 -> vector is initialized in descending order of elements\n"
-            "else, the specified integer is used as random seed to fill entries\n");
+    printf ("usage : %s <size, int>   <data-order, 0|1|int>   <block-size, int>\n\n", argv[0]); 
+    printf ("\tsize -> Integer specifying the number of elements in input vector\n"
+            "\tdata-order -> Integer specifying on how-to initialize the input vector\n"
+            "\t\t0 -> vector is initialized with values in ascending order\n"
+            "\t\t1 -> vector is initialized with values in descending order\n"
+            "\t\tany other integer -> the specified integer is used as random seed to fill entries\n"
+            "\tblock-size -> Used only in AVX512 blocking implementation\n"
+            );
     exit(1);
   }
 
