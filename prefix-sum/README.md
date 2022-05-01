@@ -34,4 +34,4 @@ Running the script `bench.sh` would do a sweep from 64 to 1024 in steps of 16 (a
 
 ## Results: 
 
-Full technical article appeared in Parallel Universe Magazine Issue #44 [(link)](https://www.intel.com/content/www/us/en/developer/community/parallel-universe-magazine/overview.html) [(pdf)](./prefix-sum/parallel-universe-issue-44.pdf)
+Full technical article appeared in Parallel Universe Magazine Issue #44 [(link)](https://www.intel.com/content/www/us/en/developer/community/parallel-universe-magazine/overview.html) [(pdf)](./parallel-universe-issue-44.pdf)
