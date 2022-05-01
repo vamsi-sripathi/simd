@@ -21,7 +21,7 @@ Intel C Compiler and Intel Math Kernel Library
   - max_ref_{icc, gcc, clang}: implementations relying on corresponding Compiler 
 
 ## Run: 
-`
+```
 usage : ./max_itrack.out <size, int>   <data-order, 0|1|int>   <block-size, int>
 
         size -> Integer specifying the number of elements in input vector
@@ -30,7 +30,7 @@ usage : ./max_itrack.out <size, int>   <data-order, 0|1|int>   <block-size, int>
                 1 -> vector is initialized with values in descending order
                 any other integer -> the specified integer is used as random seed to fill entries
         block-size -> Used only in AVX512 blocking implementation
-`
+```
 
 ## Benchmark:
 `bench.sh` is a script that launches the binaries for different sizes of input vectors to sweep the cache hierarchy.
