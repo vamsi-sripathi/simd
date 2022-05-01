@@ -32,6 +32,9 @@ usage : ./max_itrack.out <size, int>   <data-order, 0|1|int>   <block-size, int>
         block-size -> Used only in AVX512 blocking implementation
 ```
 
+## Limitations: 
+Loop tail handling is missing, so the size of input vector should be a multiple of unrolling factor (128). Also, for two-pass implementation, size of input should be exactly divisible by blocking size.
+
 ## Benchmark:
 `bench.sh` is a script that launches the binaries for different sizes of input vectors to sweep the cache hierarchy.
 
