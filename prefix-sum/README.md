@@ -1,7 +1,11 @@
 ## Prefix-Sum
+
+- An optimized SIMD implementation for computing prefix-sum (also known as scan) using Intel AVX512 intrinsics
+- Benchmark to compare the performance of custom written AVX512 implementation against Intel C Compiler (ICC), GCC and Clang.
+
 ![prefixsum-op](https://user-images.githubusercontent.com/18724658/166134832-2a29068f-3e73-4519-9a8e-15c17344379f.png)
 
-This benchmark compares the performance of custom written prefix-sum kernel that explicitly uses AVX512 instructions against existing implementations from different Compilers (Intel C Compiler, GCC, Clang). Below figure shows the AVX512 instruction sequence.
+## AVX512 Prefix-Sum Instruction Sequence:
 
 ![prefixsum-avx512](https://user-images.githubusercontent.com/18724658/166134744-d29c1d98-880c-4d2c-b2f9-7b52500cf58f.png)
 
@@ -24,7 +28,6 @@ USAGE: ./avx512.out <start-size> <end-size> <step-size>
 
 ## Benchmark:
 Running the script `bench.sh` would do a sweep from 64 to 1024 input sizes in steps of 16 (all in L1$) and dumps the stats to data file (plot.dat).
-
 
 ## Results: 
 - The explicit AVX-512 SIMD implementation outperforms both the baseline and OpenMP SIMD implementations from Intel Compiler, GCC and Clang.
