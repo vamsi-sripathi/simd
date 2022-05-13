@@ -2,7 +2,7 @@
 
 set -x
 
-rm -f *. *.out
+rm -f *.o *.out *.so
 
 icc -c  -O3 -xCORE-AVX512 common.c -o common.o
 
@@ -20,6 +20,9 @@ icc -qmkl -O3 -xCORE-AVX512 bench_psum_avx512.o kernels_avx512.o common.o -o avx
 
 # icc -c  -O3 -xCORE-AVX512 -qopt-zmm-usage=high -DUSE_AVX512 -DOPT2 kernels.c -o kernels_avx512.o 
 # icc -qmkl -O3 -xCORE-AVX512 bench_psum_avx512.o kernels_avx512.o common.o -o avx512.opt2.out
+
+icc -qopenmp -fPIC -fp-model strict -c -std=c99 -O3 -xCORE-AVX512 -qopt-zmm-usage=high -DUSE_AVX512 -DUSE_THREADS kernels.c -o par_avx512_psum.o
+icc -shared -fPIC -O3 -xCORE-AVX512 par_avx512_psum.o -o lib_par_avx512_psum.so
 
 for CC in gcc clang
 do
