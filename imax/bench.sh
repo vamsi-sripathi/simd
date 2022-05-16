@@ -41,6 +41,6 @@ awk '/Perf/ {print $(NF-3)}' ref_icc.log | tr -d ","  > t3
 # awk '/Perf/ {print $NF}' btrack.log > t4
 awk '/Perf/ {print $(NF-3)}' itrack.log | tr -d ","  > t5
 
-echo -e "N\tGCC\tCLANG\tAVX512" > results.tsv
-paste t0 t1 t2 t5 >> results.tsv
+echo -e "N\tGCC\tCLANG\tICC\tAVX512" > results.tsv
+paste t0 t1 t2 t3 t5 >> results.tsv
 rm -rf t[0-5]
