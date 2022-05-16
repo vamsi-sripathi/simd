@@ -79,4 +79,6 @@ int max_block_tracking (int *p_n, int *p_block_size, float *p_x)
       }
       p_x += NUM_ELEMS_IN_REG;
   }
+
+  return -1;
 }

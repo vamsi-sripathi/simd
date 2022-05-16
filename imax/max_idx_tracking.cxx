@@ -62,7 +62,7 @@ int max_idx_tracking (int *p_n, float *p_x)
 
 
   m0 = _mm512_cmp_ps_mask(_mm512_broadcastss_ps(xmm_x0), zmm_max, _CMP_EQ_OQ);
-  int pop_cnt = _mm_popcnt_u32(_cvtmask16_u32(m0));
+  unsigned int pop_cnt = _mm_popcnt_u32(_cvtmask16_u32(m0));
   if (pop_cnt == 1) {
     _mm512_mask_compressstoreu_epi32(&block_idx, m0, zmm_indices);
     offset = _bit_scan_forward(m0);
@@ -110,4 +110,6 @@ int max_idx_tracking (int *p_n, float *p_x)
       return block_idx + offset + (i*NUM_ELEMS_IN_REG);
     }
   }
+
+  return -1;
 }
