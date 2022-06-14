@@ -11,6 +11,7 @@
 #define NUM_ELEMS_IN_REG  (16)
 #define NTRIALS           (100)
 #define SEED              (42)
+#undef DEMOTE_BUFFER
 
 #include "max_ref.cxx"
 #if defined (USE_MAX_IDX_TRACKING)
@@ -19,12 +20,25 @@
 #include "max_block_tracking.cxx"
 #endif
 
-/* extern double my_dsecnd(); */
-
 typedef enum {
   ASCEDNING_ORDER=0,
   DESCENDING_ORDER=1,
 } data_order_t;
+
+void demote_buffer(int *p_n, float *p_src)
+{
+  long long n = *p_n;
+  for (long long i=0; i<n; i+=16) {
+#if 1
+    _mm_clflushopt(p_src);
+#else
+    _mm_cldemote(p_src1);
+#endif
+    p_src += 16;
+  }
+   _mm_mfence();
+}
+
 
 void init_x (float *x, int n, data_order_t order)
 {
@@ -105,6 +119,9 @@ int main (int argc, char **argv)
   t_start = dsecnd();
   t_start = dsecnd();
   for (int t=0; t<NTRIALS; t++) {
+#if defined (DEMOTE_BUFFER)
+    demote_buffer(&n, x);
+#endif
     t_iter_start[t] = dsecnd();
 
 #if defined (USE_MAX_MKL)
