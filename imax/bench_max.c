@@ -25,6 +25,7 @@ typedef enum {
   DESCENDING_ORDER=1,
 } data_order_t;
 
+#ifdef DEMOTE_BUFFER
 void demote_buffer(int *p_n, float *p_src)
 {
   long long n = *p_n;
@@ -38,6 +39,7 @@ void demote_buffer(int *p_n, float *p_src)
   }
    _mm_mfence();
 }
+#endif
 
 
 void init_x (float *x, int n, data_order_t order)
