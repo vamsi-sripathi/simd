@@ -35,7 +35,7 @@ print("Numba: {}".format(numba.__version__))
 print("NUMBA threads {}".format( numba.config.NUMBA_DEFAULT_NUM_THREADS))
 # print("SDC par {}".format(sdc.config.config_use_parallel_overloads))
 
-# libavx512_psum.so provide OpenMP threaded avx512_psum() function with interface:
+# lib_par_avx512_psum.so provide OpenMP threaded avx512_psum() function with interface:
 # void parallel_avx512_psum(int *n, double *src, double *dst, double *alpha);
 avx512_psum_lib  = ctypes.cdll.LoadLibrary("./lib_par_avx512_psum.so")
 avx512_psum_func = avx512_psum_lib.parallel_avx512_psum

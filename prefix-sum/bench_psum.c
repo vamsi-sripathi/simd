@@ -5,7 +5,7 @@
 #include "mkl.h"
 #include <sys/time.h>
 
-#define NTRIALS           (50)
+#define NTRIALS           (100)
 #define PAGE_ALIGN        (2ULL << 20)
 #define AVX512_ALIGN      (64)
 
@@ -31,15 +31,15 @@
 /* #include <x86intrin.h> */
 // End for GCC
 
-int check_results (int *p_n, double *ref, double *obs);
 void init_x (double *x, int n);
-void compute_stats(int ntrials, double *t_iter, double *t_total, double *t_best, double *t_worst);
+int check_results (int *p_n, double *ref, double *obs);
+void compute_stats (int ntrials, double *t_iter, double *t_total, double *t_best, double *t_worst);
 
 void ref_psum (int *p_n, double *restrict src, double *restrict dst, double *p_init_val);
 void omp_psum (int *p_n, double *restrict src, double *restrict dst, double *p_init_val);
 void avx512_psum (int *p_n, double *restrict src, double *restrict dst, double *p_init_val);
 
-double timer_us(void) {
+double timer_us() {
 	struct timeval mytime;
 
 	gettimeofday( &mytime, (struct timezone *)0);
@@ -75,10 +75,6 @@ int main (int argc, char **argv)
   posix_memalign((void **)&y, PAGE_ALIGN, sizeof(double)*n);
   posix_memalign((void **)&y_ref, PAGE_ALIGN, sizeof(double)*n);
 #endif
-
-  init_x(x, n);
-  /* memset(y, 0, sizeof(double)*n); */
-  /* memset(y_ref, 0, sizeof(double)*n); */
 
   printf ("INFO: Benchmarking %s ..\n", STRINGIFY(OPT_FNAME));
 

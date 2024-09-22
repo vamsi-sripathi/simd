@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+# lib_par_avx512_psum.so provide OpenMP threaded parallel_avx512_psum() function.
+# NumPy is sequential, so set OMP_NUM_THREADS=1 when running this test
+# so that parallel_avx512_psum() does not do multi-threading
+
 import numpy as np
 import sys
 import time
@@ -21,10 +25,9 @@ print("Numpy: {}".format(np.__version__))
 os.environ["OMP_PLACES"] = "cores"
 os.environ["OMP_PROC_BIND"] = "close"
 
-print("OMP_PLACES is set to:", os.environ["OMP_PLACES"])
-print("OMP_PROC_BIND is set to:", os.environ["OMP_PROC_BIND"])
+print("OMP_PLACES      is set to:", os.environ["OMP_PLACES"])
+print("OMP_PROC_BIND   is set to:", os.environ["OMP_PROC_BIND"])
 
-# libavx512_psum.so provide OpenMP threaded avx512_psum() function with interface:
 # void parallel_avx512_psum(int *n, double *src, double *dst, double *alpha);
 avx512_psum_lib  = ctypes.cdll.LoadLibrary("./lib_par_avx512_psum.so")
 avx512_psum_func = avx512_psum_lib.parallel_avx512_psum

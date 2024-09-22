@@ -90,7 +90,7 @@ void avx512_psum (int *p_n, double *restrict src, double *restrict dst, double *
     dst += N_UNROLL;
   }
 
-  if (n_tail & 8) {
+  if (n_tail & NUM_ELES_IN_ZMM) {
     zmm0  = _mm512_loadu_pd(src);
 
     zmm2  = _mm512_maskz_permute_pd(0xAA, zmm0, 0x00);
@@ -113,7 +113,7 @@ void avx512_psum (int *p_n, double *restrict src, double *restrict dst, double *
     src  += NUM_ELES_IN_ZMM;
     dst  += NUM_ELES_IN_ZMM;
 
-    n_tail -= 8;
+    n_tail -= NUM_ELES_IN_ZMM;
   }
 
   if (n_tail) {
