@@ -38,6 +38,8 @@ USAGE: ./avx512.out <start-size> <end-size> <step-size>
 - Numba: See bench_psum_sdc.py
 
 ## Results: 
+![psum_speedup](https://github.com/user-attachments/assets/5f1360bc-f8be-4f7a-a4ab-9993941aaaa0)
+
 - The average speed-up of the explicit SIMD prefix-sum implementation over standard Compilers/runtime (GCC, Clang, Intel, NumPy) is ~5x on Intel Xeon Icelake server.
 - GCC and Clang are unable to vectorize the prefix-sum computations. Their performance remains unchanged, even with the OpenMP SIMD directives.
 - Intel C Compiler does a great job of auto-vectorization when OpenMP SIMD directives are used. Hence, the speed-up of explicit AVX512 implmentation is lower at 1.5x
