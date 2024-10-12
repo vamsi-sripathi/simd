@@ -48,4 +48,4 @@ Loop tail handling is missing, so the size of input vector should be a multiple 
 - Performance is measured for one thread pinned to a single core. The average time elapsed for 100 iterations of each problem size is reported. Memory is allocated on 64B aligned boundaries.
 
 
-Full technical article appeared in Parallel Universe Magazine Issue #46 [(link)](https://www.intel.com/content/www/us/en/developer/community/parallel-universe-magazine/overview.html) [(pdf)](./parallel-universe-issue-46.pdf)
+Full technical article appeared in Parallel Universe Magazine Issue #46 [(link)](https://www.intel.com/content/www/us/en/developer/articles/technical/optimizing-maxloc-operation-using-avx-512-vector-instructions.html) [(pdf)](./parallel-universe-issue-46.pdf)
