@@ -88,7 +88,10 @@ int main (int argc, char **argv)
   int block_size = atoi(argv[3]);
   int opt_idx, ref_idx, incx = 1;
 
-  posix_memalign((void **)&x, 64, sizeof(float)*n); 
+  if (posix_memalign((void **)&x, 64, sizeof(float)*n)) {
+   printf ("Memory allocation failed!\n");
+   exit(1);
+  }
 
   init_x(x, n, order);
 
